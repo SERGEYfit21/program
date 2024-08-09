@@ -177,7 +177,7 @@
                 <tr>
                     <td>1</td>
                     <td>150 кг</td>
-                    <td>12</td>
+                    <td><input type="number" id="reps1" value="12" onchange="saveReps('reps1')"></td>
                 </tr>
             </table>
         </div>
@@ -193,7 +193,7 @@
                 <tr>
                     <td>1</td>
                     <td>150 кг</td>
-                    <td>12</td>
+                    <td><input type="number" id="reps2" value="12" onchange="saveReps('reps2')"></td>
                 </tr>
             </table>
         </div>
@@ -209,7 +209,7 @@
                 <tr>
                     <td>1</td>
                     <td>50 кг</td>
-                    <td>12</td>
+                    <td><input type="number" id="reps3" value="12" onchange="saveReps('reps3')"></td>
                 </tr>
             </table>
         </div>
@@ -225,7 +225,7 @@
                 <tr>
                     <td>1</td>
                     <td>100 кг</td>
-                    <td>12</td>
+                    <td><input type="number" id="reps4" value="12" onchange="saveReps('reps4')"></td>
                 </tr>
             </table>
         </div>
@@ -248,6 +248,26 @@
                 button.textContent = 'Переключить на темную тему';
             }
         });
+
+        // Сохранение данных повторений в localStorage
+        function saveReps(id) {
+            const repsValue = document.getElementById(id).value;
+            localStorage.setItem(id, repsValue);
+        }
+
+        // Загрузка сохраненных данных из localStorage
+        function loadReps() {
+            const repsIds = ['reps1', 'reps2', 'reps3', 'reps4'];
+            repsIds.forEach(id => {
+                const savedValue = localStorage.getItem(id);
+                if (savedValue) {
+                    document.getElementById(id).value = savedValue;
+                }
+            });
+        }
+
+        // Вызов функции загрузки при загрузке страницы
+        loadReps();
     </script>
 </body>
 </html>
