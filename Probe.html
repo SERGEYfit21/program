@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программа тренировок</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Furore;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header .week-day {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .header .weight {
+            font-size: 20px;
+        }
+
+        .quote {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .workout {
+            margin-bottom: 20px;
+        }
+
+        .workout h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .workout h2::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .workout h2.done::before {
+            background-color: gray;
+        }
+
+        .workout table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .workout table th,
+        .workout table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        /* Темная тема */
+        body.dark {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark .quote {
+            background-color: #333;
+        }
+
+        body.dark .workout h2::before {
+            background-color: limegreen;
+        }
+
+        body.dark .workout h2.done::before {
+            background-color: #555;
+        }
+
+        .theme-toggle {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .theme-toggle button {
+            padding: 10px 20px;
+            background-color: #008cba;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .theme-toggle button:focus {
+            outline: none;
+        }
+
+        .theme-toggle button.dark-mode {
+            background-color: #333;
+        }
+
+        .theme-toggle button.light-mode {
+            background-color: #ccc;
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="info">
+                <div class="week-day">
+                    1 НЕДЕЛЯ<br>1 ДЕНЬ
+                </div>
+                <div class="weight">
+                    ВЕС<br>82 кг
+                </div>
+                <div class="night-mode">
+                    🌙
+                </div>
+            </div>
+        </div>
+
+        <div class="quote">
+            ПЕРВЫЙ ШАГ – САМОЕ ТРУДНОЕ,<br>
+            НО МЫ В ТЕБЯ ВЕРИМ!<br>
+            ВПЕРЕД К ТЕЛУ СВОЕЙ МЕЧТЫ!<br>
+            ТЫ СМОЖЕШЬ!
+        </div>
+
+        <div class="workout">
+            <h2 class="done">ЖИМ НОГАМИ В БЛОЧНОМ ТРЕНАЖЕРЕ</h2>
+            <table>
+                <tr>
+                    <th>Сет</th>
+                    <th>Вес</th>
+                    <th>Повторения</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>150 кг</td>
+                    <td>12</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="workout">
+            <h2>ЖИМ ПЛАТФОРМЫ НОГАМИ</h2>
+            <table>
+                <tr>
+                    <th>Сет</th>
+                    <th>Вес</th>
+                    <th>Повторения</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>150 кг</td>
+                    <td>12</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="workout">
+            <h2>КОСИЧКА НА ТРИЦЕПС</h2>
+            <table>
+                <tr>
+                    <th>Сет</th>
+                    <th>Вес</th>
+                    <th>Повторения</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>50 кг</td>
+                    <td>12</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="workout">
+            <h2>ИКРЫ СИДЯ В ТРЕНАЖЕРЕ</h2>
+            <table>
+                <tr>
+                    <th>Сет</th>
+                    <th>Вес</th>
+                    <th>Повторения</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>100 кг</td>
+                    <td>12</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="theme-toggle">
+            <button id="themeButton">Переключить тему</button>
+        </div>
+    </div>
+
+    <script>
+        // Переключение темы
+        const button = document.getElementById('themeButton');
+        const body = document.body;
+
+        button.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                button.textContent = 'Переключить на светлую тему';
+            } else {
+                button.textContent = 'Переключить на темную тему';
+            }
+        });
+    </script>
+</body>
+</html>
