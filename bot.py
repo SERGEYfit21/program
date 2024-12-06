@@ -4,6 +4,12 @@ from telegram.ext import ApplicationBuilder, CommandHandler
 
 # Функция обработки команды /start
 async def start(update: Update, context):
+    # URL картинки из вашего репозитория
+    image_url = "https://raw.githubusercontent.com/SERGEYfit21/program/main/welcome.jpg"
+    
+    # Отправка картинки по URL
+    await update.message.reply_photo(photo=image_url)
+
     # Текст приветственного сообщения
     welcome_message = (
         "Привет! 👋\n"
@@ -14,14 +20,9 @@ async def start(update: Update, context):
         "- получить индивидуальную программу тренировок 📋 или онлайн-сопровождение 🌐.\n\n"
         "**Пожалуйста, подождите немного, я скоро отвечу! 😊**"
     )
+    
     # Отправка текстового сообщения
     await update.message.reply_text(welcome_message, parse_mode="Markdown")
-
-    # URL картинки из вашего репозитория
-    image_url = "https://raw.githubusercontent.com/SERGEYfit21/program/main/welcome.jpg"
-
-    # Отправка картинки по URL
-    await update.message.reply_photo(photo=image_url)
 
 # Основной блок
 if __name__ == "__main__":
