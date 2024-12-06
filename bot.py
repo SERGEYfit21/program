@@ -4,7 +4,24 @@ from telegram.ext import ApplicationBuilder, CommandHandler
 
 # Функция обработки команды /start
 async def start(update: Update, context):
-    await update.message.reply_text("Добро пожаловать в моего бота! Напишите мне, чтобы узнать больше.")
+    # Текст приветственного сообщения
+    welcome_message = (
+        "Привет! 👋\n"
+        "Меня зовут Сергей, и я дипломированный фитнес-тренер с 5-летним опытом. "
+        "Уже более **70 клиентов** достигли своей цели 💪 — от снижения веса 🏋️‍♂️ до исправления осанки 🧘.\n\n"
+        "Напишите мне, чтобы:\n"
+        "- сформулировать вашу задачу (похудение, набор мышечной массы, осанка и т.д.);\n"
+        "- получить индивидуальную программу тренировок 📋 или онлайн-сопровождение 🌐.\n\n"
+        "**Пожалуйста, подождите немного, я скоро отвечу! 😊**"
+    )
+    # Отправка текстового сообщения
+    await update.message.reply_text(welcome_message, parse_mode="Markdown")
+
+    # URL картинки из вашего репозитория
+    image_url = "https://raw.githubusercontent.com/SERGEYfit21/program/main/welcome.jpg"
+
+    # Отправка картинки по URL
+    await update.message.reply_photo(photo=image_url)
 
 # Основной блок
 if __name__ == "__main__":
